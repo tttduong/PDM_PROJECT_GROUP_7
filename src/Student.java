@@ -84,18 +84,12 @@ public class Student extends JFrame{
     }
 
     public void connect() {
-        SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setUser("sa");
-        ds.setPassword("Quenroi6212@");
-        ds.setServerName("DESKTOP-O34QFU6\\SQLEXPRESS");
-        ds.setPortNumber(1433);
-        ds.setDatabaseName("Final_Project_PDM");
-        ds.setEncrypt(false);
         try {
-            con = ds.getConnection();
-            System.out.println("Connection successful");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Final_Project_PDM;encrypt=false;user=sa;password=Quenroi6212@;");
+            System.out.println("Connected Successfully");
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     void sign_out(){
