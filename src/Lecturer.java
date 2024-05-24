@@ -17,6 +17,7 @@ public class Lecturer {
     private JButton addButton;
     private JPanel Main;
     private JButton editButton;
+    private JButton deleteButton;
 
     Connection con;
     PreparedStatement pst;
@@ -81,6 +82,24 @@ public class Lecturer {
                 sign_out();
             }
         });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = table1.getSelectedRow();
+                if (selectedRow >= 0) {
+                    String tableName = tableMap.get(comboBox1.getSelectedItem());
+                    Object id = table1.getValueAt(selectedRow, 0);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Delete", JOptionPane.YES_NO_OPTION);
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        deleteRecord(tableName, id);
+                        loadSelectedTable(tableName);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a record to delete");
+                }
+            }
+        });
     }
 
     public JPanel getMainPanel() {
@@ -101,18 +120,12 @@ public class Lecturer {
     }
 
     public void connect() {
-        SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setUser("sa");
-        ds.setPassword("Quenroi6212@");
-        ds.setServerName("DESKTOP-O34QFU6\\SQLEXPRESS");
-        ds.setPortNumber(1433);
-        ds.setDatabaseName("Final_Project_PDM");
-        ds.setEncrypt(false);
         try {
-            con = ds.getConnection();
-            System.out.println("Connection successful");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Final_Project_PDM;encrypt=false;user=sa;password=Quenroi6212@;");
+            System.out.println("Connected Successfully");
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     void sign_out(){
@@ -174,6 +187,19 @@ public class Lecturer {
             table1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    void deleteRecord(String tableName, Object id) {
+        try {
+            String deleteQuery = "DELETE FROM " + tableName + " WHERE student_id = ?";
+            pst = con.prepareStatement(deleteQuery);
+            pst.setObject(1, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Record deleted successfully");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error deleting record");
         }
     }
 }
