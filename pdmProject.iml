@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/sqljdbc_12.6.1.0_enu/sqljdbc_12.6/enu/jars/mssql-jdbc-12.6.1.jre11.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../__MACOSX/Lab5/._rs2xml.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,12 +19,10 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/Lab5/Lab5/rs2xml.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../__MACOSX/Lab5/._mssql-jdbc-12.2.0.jre8.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/Downloads/Lab5/Lab5/rs2xml.jar!/src" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

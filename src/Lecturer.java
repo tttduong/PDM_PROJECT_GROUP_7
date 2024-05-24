@@ -1,4 +1,4 @@
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+//import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.*;
@@ -122,7 +122,7 @@ public class Lecturer {
     public void connect() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Final_Project_PDM;encrypt=false;user=sa;password=Quenroi6212@;");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=OnlineExaminationSystem;encrypt=false;user=sa;password=12345678;");
             System.out.println("Connected Successfully");
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
