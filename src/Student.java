@@ -86,7 +86,7 @@ public class Student extends JFrame{
     public void connect() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Final_Project_PDM;encrypt=false;user=sa;password=Quenroi6212@;");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=OnlineExaminationSystem;encrypt=false;user=sa;password=12345678;");
             System.out.println("Connected Successfully");
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
