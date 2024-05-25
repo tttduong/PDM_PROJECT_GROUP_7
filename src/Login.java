@@ -5,13 +5,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  *
@@ -23,7 +19,7 @@ public class Login extends JFrame {
     private static final String password_2 = "1234";
     private static final String userID_3 = "ITL21241";
     private static final String password_3 = "1234";
-
+    private JPanel panel1;
 
 
     /** Creates new form Login */
@@ -46,7 +42,7 @@ public class Login extends JFrame {
     public void loginActionPerformed(java.awt.event.ActionEvent evt){
         setVisible(false);
         String userID = jTextField1.getText();
-        String password = jTextField2.getText();
+        String password = jPasswordField2.getText();
 
         if(userID.equalsIgnoreCase(userID_2) && password.equals(password_2)) {
             Student object = new Student();
@@ -69,7 +65,7 @@ public class Login extends JFrame {
     public void connect() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Final_Project_PDM;encrypt=false;user=sa;password=Quenroi6212@;");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=OnlineExaminationSystem;encrypt=false;user=sa;password=12345678;");
             System.out.println("Connected Successfully");
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -90,7 +86,7 @@ public class Login extends JFrame {
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
         jTextField1 = new  RoundedTextField(20);
-        jTextField2 = new RoundedTextField(20);
+        jPasswordField2 = new RoundedPasswordField(20);
         jButton1 = new JButton();
         jLabel3 = new JLabel("",SwingConstants.CENTER);
         jLabel4 = new JLabel();
@@ -128,12 +124,12 @@ public class Login extends JFrame {
         });
 
 
-        jTextField2.setText("Type your password");
-        jTextField2.setForeground(new Color(121, 121, 121));
-        jTextField2.setToolTipText("");
-        jTextField2.setPreferredSize(new Dimension(100,100));
-        jTextField2.setBackground(new Color(239, 233, 233));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField2.setText("Type your password");
+        jPasswordField2.setForeground(new Color(121, 121, 121));
+        jPasswordField2.setToolTipText("");
+        jPasswordField2.setPreferredSize(new Dimension(100,100));
+        jPasswordField2.setBackground(new Color(239, 233, 233));
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputPassword(evt);
             }
@@ -193,7 +189,7 @@ public class Login extends JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(10)
-                                        .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jPasswordField2, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE) // Khoảng trống để căn phải
@@ -217,7 +213,7 @@ public class Login extends JFrame {
                                         .addComponent(jLabel1))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPasswordField2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel2))
                                 .addGap(30, 30, 30)
                                 .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -282,7 +278,149 @@ public class Login extends JFrame {
     private JLabel jLabel5;
     private JPanel jPanel1;
     private JTextField jTextField1;
-    private JTextField jTextField2;
+    private JPasswordField jPasswordField2;
+
+//    private void createUIComponents() {
+//        // TODO: place custom component creation code here
+
+//        ImageIcon imageLogo = new ImageIcon(getClass().getResource("123.png"));
+//        Image image = imageLogo.getImage(); // transform it
+//        Image newimg = image.getScaledInstance(90, 90,  Image.SCALE_SMOOTH); // scale it the smooth way
+//        imageLogo = new ImageIcon(newimg);  // transform it back
+//
+//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        setBackground(new Color(255, 255, 255));
+//        setSize(new Dimension(1920, 1080));
+//        getContentPane().setBackground(Color.WHITE);
+//
+//
+//        jLabel1.setFont(new Font("SF Pro", 1, 15));
+//        jLabel1.setText("User's ID");
+//
+//        jLabel2.setFont(new Font("SF Pro", 1, 15));
+//        jLabel2.setText("Password");
+//
+//        jTextField1.setText("Type your ID");
+//        jTextField1.setForeground(new Color(121, 121, 121));
+//        jTextField1.setName(""); // NOI18N
+//        jTextField1.setPreferredSize(new Dimension(806, 78));
+//        jTextField1.setBackground(new Color(239, 233, 233));
+//        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                inputID(evt);
+//            }
+//        });
+//
+//
+//        jPasswordField2.setText("Type your password");
+//        jPasswordField2.setForeground(new Color(121, 121, 121));
+//        jPasswordField2.setToolTipText("");
+//        jPasswordField2.setPreferredSize(new Dimension(100,100));
+//        jPasswordField2.setBackground(new Color(239, 233, 233));
+//        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                inputPassword(evt);
+//            }
+//        });
+//
+//        jButton1.setBackground(new Color(0, 0, 204));
+//        jButton1.setForeground(new Color(255, 255, 255));
+//        jButton1.setFont(new Font("SF Pro", 1, 12));
+//        jButton1.setActionCommand("LOG IN");
+//        jButton1.setLabel("LOG IN");
+//        jButton1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                loginActionPerformed(evt);
+//            }
+//        });
+//
+//        jLabel3.setFont(new Font("SF Pro", 1, 24)); // NOI18N
+//        jLabel3.setText("USER LOGIN ");
+//        jLabel3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//        jLabel3.setPreferredSize(new Dimension(1128, 44));
+//
+//        jLabel4.setFont(new Font("SF Pro", 1, 24)); // NOI18N
+//        jLabel4.setText("WELCOME TO HCMIU ONLINE EXAMINATION SYSTEM");
+//        jLabel4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//        jLabel4.setPreferredSize(new Dimension(1128, 44));
+//
+//        jLabel5.setIcon(imageLogo);
+//
+//
+//        jPanel1.setBackground(new Color(217, 217, 217));
+//
+//        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+//        jPanel1.setLayout(jPanel1Layout);
+//        jPanel1Layout.setHorizontalGroup(
+//                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                        .addGap(0, 1000, Short.MAX_VALUE)  // width of jPanel1
+//        );
+//        jPanel1Layout.setVerticalGroup(
+//                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                        .addGap(0, 360, Short.MAX_VALUE)
+//        );
+//
+//
+//        GroupLayout layout = new GroupLayout(getContentPane());
+//        getContentPane().setLayout(layout);
+//
+//// Horizontal layout
+//        layout.setHorizontalGroup(
+//                layout.createSequentialGroup()
+//                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER) // Center horizontally
+//                                .addComponent(jLabel5)
+//                                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                .addGroup(layout.createSequentialGroup()
+//                                        .addComponent(jLabel1)
+//                                        .addGap(10)
+//                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
+//                                .addGroup(layout.createSequentialGroup()
+//                                        .addComponent(jLabel2)
+//                                        .addGap(10)
+//                                        .addComponent(jPasswordField2, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
+//                                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+//                                .addGroup(layout.createSequentialGroup()
+//                                        .addGap(0, 0, Short.MAX_VALUE) // Khoảng trống để căn phải
+//                                        .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+//                                        .addGap(0, 0, Short.MAX_VALUE) // Khoảng trống để căn phải
+//                                )
+//                                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                        )
+//        );
+//
+//        layout.setVerticalGroup(
+//                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                        .addGroup(layout.createSequentialGroup()
+//                                .addGap(90, 90, 90)
+//                                .addComponent(jLabel5)
+//                                .addGap(100, 100, 100)
+//                                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+////                                .addGap(35, 35, 35)
+//                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+//                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+//                                        .addComponent(jLabel1))
+//                                .addGap(28, 28, 28)
+//                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+//                                        .addComponent(jPasswordField2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+//                                        .addComponent(jLabel2))
+//                                .addGap(30, 30, 30)
+//                                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+//                                .addGap(300)
+//                                .addContainerGap(97, Short.MAX_VALUE))
+//                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+//                                        .addContainerGap(121, Short.MAX_VALUE)
+//                                        .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                        .addContainerGap(43, Short.MAX_VALUE)))
+//                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+//                                .addGroup(layout.createSequentialGroup()
+//                                        .addGap(200)
+//                                        .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                        .addContainerGap(500, Short.MAX_VALUE)))
+//        );
+//
+//        pack();
+//    }
 
 
     // End of variables declaration
